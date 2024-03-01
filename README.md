@@ -9,6 +9,10 @@
 - FireBase set up is completed
 - Hosted the web site on firebase
 - after sign in or sign up , user details are stored on the redux store.
+- Based on the login user we need to show the datails on browse page.
+- Sign out feature in header
+- Bug -1 profile update in body leads to error and it was changed to the login page in the api call   itself 
+- Bug -2 
 
 
 # Features

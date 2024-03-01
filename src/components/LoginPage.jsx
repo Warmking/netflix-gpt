@@ -4,6 +4,7 @@ import { validate } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 
@@ -12,6 +13,7 @@ const LoginPage = () => {
   const [errorMsg, setErrorMsg] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
+  const displayName = useRef();
   const handleButtonClick = () => {
     setSignIn(!signIn);
   };
@@ -27,7 +29,16 @@ const LoginPage = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          updateProfile(user, {
+            displayName: displayName.current.value,
+            photoURL:
+              "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png?20201013161117",
+          })
+            .catch((error) => {
+              // An error occurred
+              // ...
+              setErrorMsg(error);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -36,16 +47,18 @@ const LoginPage = () => {
         });
     } else {
       // sign in
-      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
-        .then((userCredential) => {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then(() => {
           // Signed in
-          const user = userCredential.user;
-          console.log(user);
+          
         })
         .catch((error) => {
-          const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMsg(errorCode + errorMessage);
+          setErrorMsg(errorMessage);
         });
     }
   };
@@ -72,6 +85,7 @@ const LoginPage = () => {
         </h1>
         {!signIn && (
           <input
+            ref={displayName}
             className="block p-4 mx-2  my-4 border border-gray-100 rounded-lg w-80 bg-black text-white outline-none"
             placeholder="Full Name"
             type="text"
