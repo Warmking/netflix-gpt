@@ -7,6 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { BG_IMG, PHOTO_URL } from "../utils/constants";
 
 const LoginPage = () => {
   const [signIn, setSignIn] = useState(true);
@@ -32,7 +33,7 @@ const LoginPage = () => {
           updateProfile(user, {
             displayName: displayName.current.value,
             photoURL:
-              "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png?20201013161117",
+              PHOTO_URL,
           })
             .catch((error) => {
               // An error occurred
@@ -69,7 +70,7 @@ const LoginPage = () => {
         <Header />
         <div className="bg-opacity-50">
           <img
-            src="https://assets.nflxext.com/ffe/siteui/vlv3/5e16108c-fd30-46de-9bb8-0b4e1bbbc509/68483501-f27e-4794-a811-e86fa2e3a25f/US-en-20240205-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+            src={BG_IMG}
             alt="background-img"
           />
         </div>

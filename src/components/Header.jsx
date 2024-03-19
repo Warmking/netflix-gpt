@@ -5,6 +5,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useEffect } from "react";
+import { NETFLIX_LOGO } from "../utils/constants";
 
 
 const Header = () => {
@@ -13,7 +14,7 @@ const Header = () => {
   const user = useSelector(store => store.user)
 
   useEffect(()=>{
-    onAuthStateChanged(auth, (user) => {
+   const browse =  onAuthStateChanged(auth, (user) => {
       if (user) {
         const {uid,email,displayName,photoURL} = user
         dispatch(addUser(
@@ -30,10 +31,11 @@ const Header = () => {
         navigate('/')
       }
     });
+      return ()=>{
+        browse()
+      }
+
   },[])
-
-
-
 
   const handleSignOut = () => {
     signOut(auth)
@@ -49,7 +51,7 @@ const Header = () => {
     <div className="absolute bg-gradient-to-b from-black w-full flex justify-between">
       <img
         className="w-48 mx-14 my-2 "
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+        src={NETFLIX_LOGO}
         alt="logo"
       />
       {
