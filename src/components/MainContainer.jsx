@@ -1,11 +1,18 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useSelector } from "react-redux";
+import BackgroundVideo from "./BackgroundVideo";
+import VideoTitle from "./VideoTitle";
+
 const maincontainer = () => {
+  const nowPlayingMovies = useSelector(store => store.movie.nowPlayingMovies)
+
+  if(!nowPlayingMovies) return null;
+
+  const trendingMovie = nowPlayingMovies[9]
   return (
     <div className="">
-      <iframe className="w-screen aspect-video"
-        src="https://www.youtube.com/embed/67vbA5ZJdKQ?si=jZNX7_8rbaskdUYo&autoplay=1&mute=1"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      ></iframe>
+     <VideoTitle movie={trendingMovie}/>
+     <BackgroundVideo videoId={trendingMovie.id}/>
     </div>
   );
 };

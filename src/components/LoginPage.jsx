@@ -32,14 +32,12 @@ const LoginPage = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: displayName.current.value,
-            photoURL:
-              PHOTO_URL,
-          })
-            .catch((error) => {
-              // An error occurred
-              // ...
-              setErrorMsg(error);
-            });
+            photoURL: PHOTO_URL,
+          }).catch((error) => {
+            // An error occurred
+            // ...
+            setErrorMsg(error);
+          });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -55,7 +53,6 @@ const LoginPage = () => {
       )
         .then(() => {
           // Signed in
-          
         })
         .catch((error) => {
           const errorMessage = error.message;
@@ -65,21 +62,16 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="">
+    <div className="bg-gradient-to-r from-black w-screen aspect-video">
       <div className="relative">
         <Header />
-        <div className="bg-opacity-50">
-          <img
-            src={BG_IMG}
-            alt="background-img"
-          />
-        </div>
+        <img className="opacity-100 absolute -z-10" src={BG_IMG} alt="background-img" />
       </div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className="p-4 border bg-black bg-opacity-90 w-96 absolute top-[25%] right-[40%] border-black rounded-2xl"
+        className="p-4 border bg-black bg-opacity-90 w-96 absolute top-[25%] right-[35%] border-black rounded-2xl"
       >
         <h1 className="text-4xl p-1 mx-2  my-4 z-1 text-white font-bold ">
           {signIn ? "Sign In" : "Sign Up"}

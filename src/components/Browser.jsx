@@ -1,29 +1,39 @@
-import { OPTIONS } from "../utils/constants";
+import useMovieList from "../hooks/useMovieList";
 import Header from "./Header";
-import { useEffect } from "react";
-import MainContainer from './MainContainer'
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
+import {
+  addNowPlayingMovies,
+  addPopularMovies,
+  addTopRatedMovies,
+  addUpcomingMovies,
+} from "../utils/movieSlice";
+import { useSelector } from "react-redux";
+import GptSearchPage from "./GptSearchPage";
 
 const Browser = () => {
-  const movieList = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?page=1",
-      OPTIONS
-    );
-    const json = await data.json();
-    console.log(json);
-  };
+  const gptSearch = useSelector((state) => state.gpt.gptSearch);
 
-  useEffect(() => {
-    movieList();
-  }, [])
+  useMovieList("now_playing", addNowPlayingMovies);
+  useMovieList("popular", addPopularMovies);
+  useMovieList("top_rated", addTopRatedMovies);
+  useMovieList("upcoming", addUpcomingMovies);
 
   return (
-    <div>
-      <Header/>
-      <MainContainer/>
+    <div className="">
+      <Header />
+      {gptSearch ? (
+        <>
+          <GptSearchPage />
+        </>
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
   );
-}
-
+};
 
 export default Browser;

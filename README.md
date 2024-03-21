@@ -13,7 +13,15 @@
 - Sign out feature in header
 - Bug -1 profile update in body leads to error and it was changed to the login page in the api call   itself 
 - Bug -2 
-
+- Implementing the browse page
+    - maincontainer
+     - backgroungVideo
+    -secondarycontainer 
+      - n*n cards -- displays the movie title
+-created maincontainer beautifully with tailwind css
+-movieSlice created and used the TMDB Api for movies list
+-implemented the autoplay feature and background video in maincontainer as same as netflix 
+- 
 
 # Features
 - Login page
