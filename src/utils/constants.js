@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export const NETFLIX_LOGO =
   "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
 
@@ -10,7 +11,7 @@ export const OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMzk5YzdkMzIyYzAwOGE4NzdkNTE1ZDA0ODMwNzQxYiIsInN1YiI6IjY1ZjU0OTEzZTAzOWYxMDE3ZDAzODEyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.iXu_heyuaowO9H-P2p26PKlwAosQBolgkR-e3dI-e2Q",
+      "Bearer "+ process.env.REACT_APP_TMDB_API,
   },
 };
 
@@ -23,4 +24,4 @@ export const SUPPORTED_LANGS = [
   { identifier: "german", name: "German" },
 ];
 
-export const GEMINI_API_KEY = "AIzaSyB4-i1uNaHWnq49jszMl8gdjKNvCAeVvPU"
+export const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API

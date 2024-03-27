@@ -2,6 +2,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Browser from "./Browser"
 import LoginPage from "./LoginPage"
+import MovieInfo from "./MovieInfo"
 
 
 const Body = () => {
@@ -14,6 +15,10 @@ const Body = () => {
     {
       path:'/browse',
       element:<Browser/>
+    },
+    {
+      path:'/movieInfo',
+      element:<MovieInfo/>
     }
   ])
   
