@@ -11,7 +11,7 @@ export const OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer "+ process.env.REACT_APP_TMDB_API,
+      "Bearer "+ process.env.VITE_APPWRITE_TMDB_API,
   },
 };
 
@@ -24,4 +24,4 @@ export const SUPPORTED_LANGS = [
   { identifier: "german", name: "German" },
 ];
 
-export const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API
+export const GEMINI_API_KEY = process.env.VITE_APPWRITE_GEMINI_API
